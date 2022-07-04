@@ -19,19 +19,21 @@ public class InfoListView extends AppCompatActivity {
 
         ImageView imageView=findViewById(R.id.id_img);
         TextView name = findViewById(R.id.id_name);
-        TextView sdt = findViewById(R.id.id_sdt);
+        TextView namsinh = findViewById(R.id.id_namsinh);
+        TextView sex =findViewById(R.id.id_sex);
         //Nhận dữ liệu từ bên gửi
 
         Intent intent = getIntent();
-        infoStudent = (InfoStudent) intent.getSerializableExtra("DATA");
+        infoStudent = (InfoStudent) intent.getSerializableExtra("data");
 
         if (infoStudent != null ) {
 
             name.setText(infoStudent.getName());
-            sdt.setText(infoStudent.getPhone());
+            namsinh.setText(infoStudent.getNamsinh());
             imageView.setImageResource(infoStudent.getImage());
+            sex.setText(infoStudent.getGioitinh());
 
-            Log.w("HTC", infoStudent.getPhone() + infoStudent.getName() + infoStudent.getImage());
+            Log.w("HTC", infoStudent.getNamsinh() + infoStudent.getName() + infoStudent.getImage());
         } else {
             Log.w("HTC", "Khong co data");
 

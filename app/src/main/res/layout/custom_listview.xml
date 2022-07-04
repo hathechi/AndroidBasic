@@ -3,12 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+
     android:orientation="vertical"
+    android:padding="15dp">
 
-    android:padding="15dp"
-    >
-
-
+<!--    Khi không thể nhấp vào listview hãy -->
+<!--    thêm thuộc tính này vào layout gốc của custom listview-->
+<!--    android:descendantFocusability="blocksDescendants" -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +19,7 @@
         <ImageView
             android:id="@+id/id_avatar"
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
 
             app:srcCompat="@drawable/emtwo" />
@@ -33,22 +35,51 @@
             <TextView
                 android:id="@+id/id_name"
                 android:layout_width="wrap_content"
-                android:layout_height="45dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Name"
+                android:text="Tên"
                 android:textSize="16dp" />
 
             <TextView
-                android:id="@+id/id_sdt"
+                android:id="@+id/id_namsinh"
                 android:layout_width="wrap_content"
-                android:layout_height="45dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Số Điện Thoại"
+                android:text="Năm Sinh"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/id_gioitinh"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Giới Tính"
                 android:textSize="16dp" />
 
         </LinearLayout>
 
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ibtn_Sua"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_baseline_edit_24" />
+
+        <ImageButton
+            android:id="@+id/ibtn_Xoa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_baseline_delete_forever_24" />
     </LinearLayout>
 
 </LinearLayout>

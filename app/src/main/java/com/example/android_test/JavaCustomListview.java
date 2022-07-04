@@ -1,26 +1,28 @@
 package com.example.android_test;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class JavaCustomListview extends BaseAdapter {
-    final Context context;
+    //    final Context context;
+    final ThongTin context;
     final ArrayList<InfoStudent> list;
     final LayoutInflater layoutInflater;
 
-    public JavaCustomListview(Context context, ArrayList<InfoStudent> list) {
+    public JavaCustomListview(ThongTin context, ArrayList<InfoStudent> list) {
         this.context = context;
         this.list = list;
         this.layoutInflater = LayoutInflater.from(context);
     }
+
 
     @Override
     public int getCount() {
@@ -43,12 +45,29 @@ public class JavaCustomListview extends BaseAdapter {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.custom_listview, null);
         }
-        TextView textView = convertView.findViewById(R.id.id_name);
-        ImageView imageView = convertView.findViewById(R.id.id_avatar);
-        TextView sdt = convertView.findViewById(R.id.id_sdt);
-        textView.setText(list.get(position).getName());
-        imageView.setImageResource(list.get(position).getImage());
-        sdt.setText(list.get(position).getPhone());
+        TextView Ten = convertView.findViewById(R.id.id_name);
+        ImageView avatar = convertView.findViewById(R.id.id_avatar);
+        TextView namsinh = convertView.findViewById(R.id.id_namsinh);
+        TextView gioitinh = convertView.findViewById(R.id.id_gioitinh);
+        ImageButton btnSua = convertView.findViewById(R.id.ibtn_Sua);
+        ImageButton btnXoa = convertView.findViewById(R.id.ibtn_Xoa);
+        btnSua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.Sua(position);
+            }
+        });
+        btnXoa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.Xoa(position);
+            }
+        });
+        Ten.setText(list.get(position).getName());
+        avatar.setImageResource(list.get(position).getImage());
+        namsinh.setText(list.get(position).getNamsinh());
+        gioitinh.setText(list.get(position).getGioitinh());
+
         return convertView;
     }
 }

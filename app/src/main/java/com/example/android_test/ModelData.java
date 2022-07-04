@@ -1,9 +1,10 @@
 package com.example.android_test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ModelData {
-    public static ArrayList<ListUser> listUsers = new ArrayList<>();
+    public static List<ListUser> listUsers = new ArrayList<>();
 }
 
 
