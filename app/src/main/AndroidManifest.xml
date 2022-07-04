@@ -14,16 +14,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login_Android">
         <activity android:name=".FormMayTinh">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Home"></activity>
         <activity android:name=".TestBundle" />
         <activity android:name=".InfoListView" />
-        <activity android:name=".ThongTin" />
+        <activity android:name=".ThongTin" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".MayTinh" />
         <activity android:name=".Register" />
         <activity

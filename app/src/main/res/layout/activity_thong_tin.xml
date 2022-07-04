@@ -3,16 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".ThongTin">
+    tools:context=".ThongTin"
+    >
 
     <ListView
+        android:layout_weight="1"
         android:id="@+id/id_listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="700dp"
+
         android:listSelector="@color/pig">
 
     </ListView>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="30dp"
+       >
+
+        <EditText
+            android:id="@+id/etName_thongtin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text=""
+            android:hint="Name"
+            />
+
+        <EditText
+            android:id="@+id/etSdt_thongtin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text=""
+            android:hint="SĐT"/>
+
+        <Button
+            android:id="@+id/btnAdd_thongtin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="THÊM" />
+    </LinearLayout>
 
 </LinearLayout>
