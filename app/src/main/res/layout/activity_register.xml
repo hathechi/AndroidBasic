@@ -117,17 +117,23 @@
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
-            android:layout_marginBottom="10dp"
-
-            android:inputType="textPersonName"
-            android:hint=". . ."
             android:layout_height="60dp"
+
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:textColorHint="#000"
-            app:backgroundTint="#fff"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/botron_edittext"
-            android:paddingLeft="30dp"/>
+            android:hint=". . ."
+            android:inputType="textEmailAddress"
+            android:paddingLeft="30dp"
+            android:textColorHint="#000"
+            app:backgroundTint="#fff" />
+        <TextView
+            android:id="@+id/tvError_regis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#D50000" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

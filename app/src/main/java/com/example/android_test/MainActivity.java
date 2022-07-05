@@ -2,6 +2,7 @@ package com.example.android_test;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,31 +52,35 @@ public class MainActivity extends AppCompatActivity {
 
         String user = username.getText().toString();
         String pass = password.getText().toString();
+
+        //tạo Handler làm khoảng delay cho sự kiện
+        Handler handler = new Handler();
+
         if (user.equals("") || pass.equals("")) {
             error.setText("KHÔNG BỎ TRỐNG DỮ LIỆU !");
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    error.setText("");
+                }
+            },1500);
 //            Toast.makeText(this, "KHÔNG BỎ TRỐNG DỮ LIỆU !", Toast.LENGTH_SHORT).show();
         } else {
-
             for (int i = 0; i < ModelData.listUsers.size(); i++) {
                 if (user.equals(ModelData.listUsers.get(i).getUser()) && pass.equals(ModelData.listUsers.get(i).getPassword())) {
                     Intent intent1 = new Intent(this, MayTinh.class);
                     startActivity(intent1);
-                    error.setText("");
-//                    Toast.makeText(this, "ĐĂNG NHẬP THÀNH CÔNG !", Toast.LENGTH_SHORT).show();
-                    return;
+
                 } else {
-
                     error.setText("SAI TÀI KHOẢN HOẶC MẬT KHẨU!");
-//                    Toast.makeText(this, "SAI TÀI KHOẢN HOẶC MẬT KHẨU!", Toast.LENGTH_SHORT).show();
-
-
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            error.setText("");
+                        }
+                    },1500);
                 }
             }
-
         }
-
-
     }
-
-
 }

@@ -1,5 +1,7 @@
 package com.example.android_test;
 
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -69,6 +72,7 @@ public class ThongTin extends AppCompatActivity {
                 btnThem = dialogsheetview.findViewById(R.id.btnAdd_thongtin);
 
                 //Xử lý radiobutton Nam Nữ
+                //lắng nghe sự kiện radio button chọn mục nào thì nhả bên còn lại
                 Nam.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -90,9 +94,12 @@ public class ThongTin extends AppCompatActivity {
                     public void onClick(View v) {
                         String ten = Ten.getText().toString();
                         String namsinh = Namsinh.getText().toString();
+                        String regexTen = "[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ ]{0,50}";
                         int image;
                         if (ten.isEmpty() || namsinh.isEmpty()) {
                             Toast.makeText(ThongTin.this, "NHẬP ĐỦ DỮ LIỆU!", Toast.LENGTH_SHORT).show();
+                        } else if (!ten.matches(regexTen)) {
+                            Toast.makeText(ThongTin.this, "CHỈ NHẬP TÊN BẰNG CHỮ !", Toast.LENGTH_SHORT).show();
                         } else {
                             if (Nam.isChecked()) {
                                 sex = "Nam";
@@ -101,6 +108,7 @@ public class ThongTin extends AppCompatActivity {
                                 sex = "Nữ";
                                 image = R.drawable.emtwo;
                             }
+                            Toast.makeText(ThongTin.this, "THÊM THÔNG TIN THÀNH CÔNG !", Toast.LENGTH_SHORT).show();
                             arrayList.add(new InfoStudent(ten, image, namsinh, sex));
                             custom.notifyDataSetChanged();
                         }
@@ -112,18 +120,18 @@ public class ThongTin extends AppCompatActivity {
 
 
 // KHi án vào 1 item trong listview
-       list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-           @Override
-           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               Intent intent = new Intent(ThongTin.this, InfoListView.class);
-               InfoStudent dataSend = arrayList.get(position);
-               if (dataSend != null) {
-                   Log.i("HTC", "ấn vào listview");
-                   intent.putExtra("data", dataSend);
-                   startActivity(intent);
-               }
-           }
-       });
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ThongTin.this, InfoListView.class);
+                InfoStudent dataSend = arrayList.get(position);
+                if (dataSend != null) {
+                    Log.i("HTC", "ấn vào listview");
+                    intent.putExtra("data", dataSend);
+                    startActivity(intent);
+                }
+            }
+        });
 
     }
 
@@ -162,15 +170,17 @@ public class ThongTin extends AppCompatActivity {
         });
 
 
-
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String ten = ten_edit.getText().toString();
                 String namsinh = namsinh_edit.getText().toString();
+                String regexTen = "[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ ]{0,50}";
                 int image;
                 if (ten.isEmpty() || namsinh.isEmpty()) {
                     Toast.makeText(ThongTin.this, "NHẬP ĐỦ DỮ LIỆU!", Toast.LENGTH_SHORT).show();
+                } else if (!ten.matches(regexTen)) {
+                    Toast.makeText(ThongTin.this, "CHỈ NHẬP TÊN BẰNG CHỮ !", Toast.LENGTH_SHORT).show();
                 } else {
                     if (nam_edit.isChecked()) {
                         sex = "Nam";
@@ -183,6 +193,8 @@ public class ThongTin extends AppCompatActivity {
                     infoStudent.setNamsinh(namsinh);
                     infoStudent.setGioitinh(sex);
                     infoStudent.setImage(image);
+
+                    Toast.makeText(ThongTin.this, "SỬA THÔNG TIN THÀNH CÔNG !", Toast.LENGTH_SHORT).show();
                     custom.notifyDataSetChanged();
                 }
             }
@@ -192,8 +204,17 @@ public class ThongTin extends AppCompatActivity {
     }
 
     public void Xoa(int posision) {
-        arrayList.remove(posision);
-        custom.notifyDataSetChanged();
+        AlertDialog.Builder builder = new AlertDialog.Builder(ThongTin.this);
+        builder.setMessage("BẠN CÓ MUỐN XÓA SV THỨ " + (posision + 1) + " NÀY? ");
+        builder.setPositiveButton("CÓ", new OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                arrayList.remove(posision);
+                custom.notifyDataSetChanged();
+            }
+        });
+        builder.show();
+
 
     }
 }
