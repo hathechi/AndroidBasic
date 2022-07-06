@@ -1,9 +1,11 @@
 package com.example.android_test;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,14 +16,17 @@ import com.chauthai.swipereveallayout.ViewBinderHelper;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class ThongTinAdapter extends RecyclerView.Adapter<ThongTinAdapter.ThongTinViewHoder> {
-
+    // tạo biến môi trường ở đây để gọi hàm ở ativity khác
+    private ThongTin thongTin;
     private List<InfoStudent> mInfoStudent;
     private ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
 
-    public ThongTinAdapter(List<InfoStudent> mInfoStudent) {
+    public ThongTinAdapter(ThongTin thongTin, List<InfoStudent> mInfoStudent) {
+        this.thongTin = thongTin;
         this.mInfoStudent = mInfoStudent;
     }
 
@@ -42,35 +47,36 @@ public class ThongTinAdapter extends RecyclerView.Adapter<ThongTinAdapter.ThongT
         viewBinderHelper.bind(holder.swipeRevealLayout, infoStudent.getName());
         holder.username.setText(infoStudent.getName());
         holder.avatar.setImageResource(infoStudent.getImage());
-        holder.sdt.setText(infoStudent.getNamsinh());
+        holder.namsinh.setText(infoStudent.getNamsinh());
+        holder.gioitinh.setText(infoStudent.getGioitinh());
         holder.xoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mInfoStudent.remove(holder.getAbsoluteAdapterPosition());
-                notifyItemRemoved(holder.getAbsoluteAdapterPosition());
-
+                thongTin.Xoa(position);
+//                mInfoStudent.remove(holder.getAbsoluteAdapterPosition());
+//                notifyItemRemoved(holder.getAbsoluteAdapterPosition());
             }
 
         });
+
         holder.sua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                ThongTin.Sua(position);
-                notifyDataSetChanged();
-//                Log.i("HTC", "onClick: " + position);
-//                Intent intent = new Intent(v.getContext(), InfoListView.class); // Intent trong onBindViewHolder không dùng "this" mà dùng "v.getContext()"
-//                InfoStudent dataSend = mInfoStudent.get(position);
-//                if (dataSend != null) {
-//                    intent.putExtra("data", (Serializable) dataSend);
-//                    v.getContext().startActivity(intent);
-//                }
-
+                thongTin.Sua(position);
             }
-
-
         });
-
+// setOnclick item recyclerview 1. đặt id cho layout được click 2. tạo biến toàn cục ở dưới và ánh xạ, xong setOnlick ở đây
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(thongTin, InfoListView.class); // Intent trong onBindViewHolder không dùng "this" mà dùng "v.getContext()"
+                InfoStudent dataSend = mInfoStudent.get(position);
+                if (dataSend != null) {
+                    intent.putExtra("data", (Serializable) dataSend);
+                    v.getContext().startActivity(intent); // dùng v.getContext() hoặc thongTin trong trường hợp này đều được
+                }
+            }
+        });
     }
 
     @Override
@@ -83,17 +89,22 @@ public class ThongTinAdapter extends RecyclerView.Adapter<ThongTinAdapter.ThongT
 
     public class ThongTinViewHoder extends RecyclerView.ViewHolder {
         public SwipeRevealLayout swipeRevealLayout;
-        public TextView sua, xoa, username, sdt;
+        public LinearLayout linearLayout;
+        public TextView sua, xoa, username, gioitinh, namsinh;
         ImageView avatar;
 
         public ThongTinViewHoder(@NonNull @NotNull View itemView) {
             super(itemView);
+
             swipeRevealLayout = itemView.findViewById(R.id.Swipe_Layout);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.click_item);
             sua = itemView.findViewById(R.id.btntvSua);
             xoa = itemView.findViewById(R.id.btntvXoa);
             username = itemView.findViewById(R.id.id_name);
-            sdt = itemView.findViewById(R.id.id_namsinh);
+            gioitinh = itemView.findViewById(R.id.id_gioitinh);
+            namsinh = itemView.findViewById(R.id.id_namsinh);
             avatar = itemView.findViewById(R.id.id_avatar);
+
 
         }
     }

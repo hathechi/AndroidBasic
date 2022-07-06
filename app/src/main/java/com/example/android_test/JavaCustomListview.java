@@ -51,18 +51,19 @@ public class JavaCustomListview extends BaseAdapter {
         TextView gioitinh = convertView.findViewById(R.id.id_gioitinh);
         ImageButton btnSua = convertView.findViewById(R.id.ibtn_Sua);
         ImageButton btnXoa = convertView.findViewById(R.id.ibtn_Xoa);
-        btnSua.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                context.Sua(position);
-            }
-        });
-        btnXoa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                context.Xoa(position);
-            }
-        });
+
+//        btnSua.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                context.Sua(position);
+//            }
+//        });
+//        btnXoa.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                context.Xoa(position);
+//            }
+//        });
         Ten.setText(list.get(position).getName());
         avatar.setImageResource(list.get(position).getImage());
         namsinh.setText(list.get(position).getNamsinh());
