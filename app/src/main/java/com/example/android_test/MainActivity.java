@@ -7,13 +7,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import JavaClass.ModelData;
+import JavaClass.ListUser;
+
 public class MainActivity extends AppCompatActivity {
     public EditText username, password;
-
+public TextView forgotpass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.etPassword);
         TextView error = findViewById(R.id.tvError);
         Button listview = findViewById(R.id.btn_listview);
+        forgotpass = findViewById(R.id.forgotpassword);
         listview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,6 +44,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Register.class);
+                startActivity(intent);
+            }
+        });
+
+        forgotpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ForgotPassword.class);
                 startActivity(intent);
             }
         });
@@ -63,12 +74,12 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
                     error.setText("");
                 }
-            },1500);
+            }, 1500);
 //            Toast.makeText(this, "KHÔNG BỎ TRỐNG DỮ LIỆU !", Toast.LENGTH_SHORT).show();
         } else {
             for (int i = 0; i < ModelData.listUsers.size(); i++) {
                 if (user.equals(ModelData.listUsers.get(i).getUser()) && pass.equals(ModelData.listUsers.get(i).getPassword())) {
-                    Intent intent1 = new Intent(this, MayTinh.class);
+                    Intent intent1 = new Intent(this, FormMayTinh.class);
                     startActivity(intent1);
 
                 } else {
@@ -78,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             error.setText("");
                         }
-                    },1500);
+                    }, 1500);
                 }
             }
         }

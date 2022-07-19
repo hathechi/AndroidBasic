@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import JavaClass.ListUser;
+import JavaClass.ModelData;
+
 public class Register extends AppCompatActivity implements View.OnClickListener {
 
 

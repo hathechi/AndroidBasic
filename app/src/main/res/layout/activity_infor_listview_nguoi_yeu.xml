@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".InfoListView">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            app:cardCornerRadius="100dp">
+
+
+            <ImageView
+                android:id="@+id/id_img_nguoiyeu"
+                android:layout_width="match_parent"
+                android:layout_height="205dp"
+                app:srcCompat="@drawable/emthree" />
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+
+            android:text="Thời Gian :  "
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/id_time_nguoiyeu"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:text=""
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tên Bạn Chọn : "
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/id_name_nguoiyeu"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text=""
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+
+            android:text="Kết Quả : "
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/id_ketqua_nguoiyeu"
+
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:text=""
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            app:cardCornerRadius="100dp">
+
+
+            <ImageView
+                android:id="@+id/id_img_nguoiyeu2"
+                android:layout_width="match_parent"
+                android:layout_height="205dp"
+                app:srcCompat="@drawable/emthree" />
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</LinearLayout>

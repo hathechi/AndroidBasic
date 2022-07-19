@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="style_text">
+        <item name="android:textColor">@color/pig</item>
+        <item name="android:textSize">20dp</item>
+
+    </style>
+    <style name="style_gravity" parent="style_text">
+        <item name="android:gravity">center</item>
+        <item name="fontFamily">@font/darkerrotesqueedium</item>
+    </style>
+</resources>

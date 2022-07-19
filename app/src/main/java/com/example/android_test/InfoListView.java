@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import JavaClass.InfoStudent;
+
 public class InfoListView extends AppCompatActivity {
 
     private InfoStudent infoStudent;

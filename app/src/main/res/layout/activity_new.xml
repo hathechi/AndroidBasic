@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutNightmode"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".ActivityNew">
+
+    <Switch
+        android:id="@+id/switchChon"
+        style="@style/style_text"
+        android:layout_width="match_parent"
+        android:layout_height="77dp"
+        android:text="CHỌN " />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        style="@style/style_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Code" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        style="@style/style_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tán Gái" />
+
+    <TextView
+        android:id="@+id/tvChecked_test"
+        style="@style/style_text"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:text="" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RadioButton
+            android:id="@+id/rbJS"
+            style="@style/style_gravity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="JS" />
+
+        <RadioButton
+            android:id="@+id/rbCplusplus"
+            style="@style/style_gravity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="C++" />
+
+        <RadioButton
+            android:id="@+id/rbJava"
+            style="@style/style_gravity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="JAVA" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:text="Button"
+        android:backgroundTint="@drawable/state_button"
+        android:background="@drawable/radius_button"
+        />
+
+</LinearLayout>

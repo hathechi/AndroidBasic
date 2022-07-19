@@ -13,30 +13,41 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.Login_Android">
-        <activity android:name=".FormMayTinh">
+        <activity android:name=".ForgotPassword"></activity>
+        <activity android:name=".SQLiteDemo"></activity>
+        <activity android:name=".ActivityNew"></activity>
+        <activity android:name=".InforListviewNguoiYeu" />
+        <activity android:name=".ImgViewTest"></activity>
+        <activity android:name=".FormMayTinh" />
+        <activity android:name=".Home">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
-        <activity android:name=".Home"></activity>
         <activity android:name=".TestBundle" />
         <activity android:name=".InfoListView" />
-        <activity android:name=".ThongTin" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".ThongTin">
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".MayTinh" />
-        <activity android:name=".Register" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+        <activity android:name=".MayTinh" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Register" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"></activity>
     </application>
 
 </manifest>

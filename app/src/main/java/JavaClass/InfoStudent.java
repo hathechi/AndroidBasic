@@ -1,4 +1,4 @@
-package com.example.android_test;
+package JavaClass;
 
 import java.io.Serializable;
 // Phải "implements Serializable" để gửi dữ liệu đi

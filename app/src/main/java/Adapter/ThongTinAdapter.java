@@ -1,4 +1,4 @@
-package com.example.android_test;
+package Adapter;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,6 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
+import com.example.android_test.InfoListView;
+import JavaClass.InfoStudent;
+import com.example.android_test.R;
+import com.example.android_test.ThongTin;
 
 import org.jetbrains.annotations.NotNull;
 

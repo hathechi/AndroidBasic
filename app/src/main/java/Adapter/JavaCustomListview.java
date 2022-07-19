@@ -1,4 +1,4 @@
-package com.example.android_test;
+package Adapter;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -8,6 +8,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import JavaClass.InfoStudent;
+import com.example.android_test.R;
+import com.example.android_test.ThongTin;
 
 import java.util.ArrayList;
 
