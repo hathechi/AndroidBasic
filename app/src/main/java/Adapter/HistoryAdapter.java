@@ -5,29 +5,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import DAO.HistoryDAO;
 import JavaClass.History;
+
+import com.example.android_test.ImgViewTestNguoiYeu;
 import com.example.android_test.R;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class HistoryAdapter extends BaseAdapter {
 
     final LayoutInflater layoutInflater;
-    private ArrayList<History> historyArrayList;
-    private Context context1;
+    private List<History> historyArrayList;
+//    private Context context1;
+    private ImgViewTestNguoiYeu imgViewTestNguoiYeu;
 
-    public HistoryAdapter(Context context, ArrayList<History> historyArrayList) {
-        this.context1 = context;
+    public HistoryAdapter(ImgViewTestNguoiYeu imgViewTestNguoiYeu, List<History> historyArrayList) {
+        this.imgViewTestNguoiYeu = imgViewTestNguoiYeu;
         this.historyArrayList = historyArrayList;
-        this.layoutInflater = LayoutInflater.from(context);
+        this.layoutInflater = LayoutInflater.from(imgViewTestNguoiYeu);
     }
 
-//    public HistoryAdapter(ImgViewTest context, ArrayList<History> historyArrayList) {
+//    public HistoryAdapter(ImgViewTestNguoiYeu context, ArrayList<History> historyArrayList) {
 //    }
 
     @Override
@@ -57,7 +64,7 @@ public class HistoryAdapter extends BaseAdapter {
 
         ImageView hinh = convertView.findViewById(R.id.imvNguoiYeu);
         ImageView hinh2 = convertView.findViewById(R.id.imvNguoiYeu2);
-
+        Button btndelete = convertView.findViewById(R.id.btn_delete_nguoiyeu);
         hinh.setImageResource(historyArrayList.get(position).getHinh());
         hinh2.setImageResource(historyArrayList.get(position).getHinh2());
 //in thời gian
@@ -69,6 +76,19 @@ public class HistoryAdapter extends BaseAdapter {
         thongbao += "BẠN CHỌN TÊN " + historyArrayList.get(position).getTendoan() + " VÀ ĐÃ CHỌN " + historyArrayList.get(position).getKetqua();
 
         ketqua.setText(thongbao);
+        btndelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(context1, "Xóa " + position, Toast.LENGTH_SHORT).show();
+//                HistoryDAO historyDAO = new HistoryDAO(context1);
+//                historyDAO.delete(String.valueOf(position));
+//                notifyDataSetChanged();
+
+                imgViewTestNguoiYeu.DeleteList(String.valueOf(position));
+
+
+            }
+        });
 
 
         return convertView;

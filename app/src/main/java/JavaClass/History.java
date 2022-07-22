@@ -3,18 +3,32 @@ package JavaClass;
 import java.io.Serializable;
 import java.util.Date;
 public class History implements Serializable {
+    private int id;
     private int hinh;
     private int hinh2;
     private Date time;
     private String tendoan;
     private String ketqua;
 
-    public History(int hinh, int hinh2, Date time, String tendoan, String ketqua) {
+    public History(int id, int hinh, int hinh2, Date time, String tendoan, String ketqua) {
+        this.id = id;
         this.hinh = hinh;
         this.hinh2 = hinh2;
         this.time = time;
         this.tendoan = tendoan;
         this.ketqua = ketqua;
+    }
+
+    public History() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getHinh() {

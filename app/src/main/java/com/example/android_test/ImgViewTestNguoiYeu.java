@@ -12,32 +12,32 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import Adapter.HistoryAdapter;
+import DAO.HistoryDAO;
 import JavaClass.History;
 
-public class ImgViewTest extends AppCompatActivity {
-
-
+public class ImgViewTestNguoiYeu extends AppCompatActivity {
     int[] hinh = new int[]{R.drawable.i5, R.drawable.i8, R.drawable.i26, R.drawable.i42, R.drawable.i27, R.drawable.i28, R.drawable.i34};
     String chon;
     int so;
     String text;
-
+    private HistoryDAO historyDAO;
+    private List<History> list;
     //    int randomInt;
     private ImageView imageView, nhanCuoi;
     private TextView love;
     private Spinner spinner;
     private ListView listView1;
     //    private ArrayList<String> arrayList = new ArrayList<>();
-    private ArrayList<History> historyArrayList = new ArrayList<>();
+//    private ArrayList<History> historyArrayList = new ArrayList<>();
     private HistoryAdapter historyAdapter;
 
     @Override
@@ -50,6 +50,8 @@ public class ImgViewTest extends AppCompatActivity {
         nhanCuoi = findViewById(R.id.imvnhancuoi);
         listView1 = findViewById(R.id.list_test);
 
+//chạy SQLite
+        HistoryDAO DAO = new HistoryDAO(getBaseContext());
 
         Handler handler = new Handler();
         nhanCuoi.setVisibility(View.INVISIBLE);
@@ -141,13 +143,28 @@ public class ImgViewTest extends AppCompatActivity {
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(ImgViewTest.this, InforListviewNguoiYeu.class);
-                intent.putExtra("dataNguoiYeu", (Serializable) historyArrayList.get(position));
+                list = historyDAO.getAll();
+                Intent intent = new Intent(ImgViewTestNguoiYeu.this, InforListviewNguoiYeu.class);
+                intent.putExtra("dataNguoiYeu", list.get(position));
+
                 startActivity(intent);
             }
         });
 
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        historyDAO = new HistoryDAO(ImgViewTestNguoiYeu.this);
+//        List<History> updateList = historyDAO.getAll();
+//        list.clear();
+//        for (History item : updateList) {
+//            list.add(item);
+//        }
+//        historyAdapter.notifyDataSetChanged();
+//
+//    }
 
     private void reFresh() {
         imageView.setImageResource(R.drawable.traitim);
@@ -178,7 +195,19 @@ public class ImgViewTest extends AppCompatActivity {
 
                 // add dữ liệu vào arraylist
                 Date date2 = new Date(System.currentTimeMillis());
-                historyArrayList.add(new History(hinh[so], hinh[i], date2, chon, text));
+//                historyArrayList.add(new History(i, hinh[so], hinh[i], date2, chon, text));
+
+                historyDAO = new HistoryDAO(this);
+                History history = new History();
+//                history.setId(i);
+                history.setHinh(hinh[so]);
+                history.setHinh2(hinh[i]);
+                history.setTime(date2);
+                history.setTendoan(chon);
+                history.setKetqua(text);
+                historyDAO.insertHistory(history);
+
+
             }
         }
         Log.i("HTC", so + " " + randomInt + " " + chon);
@@ -187,16 +216,54 @@ public class ImgViewTest extends AppCompatActivity {
 
 
     private void setAdapter() {
+        historyDAO = new HistoryDAO(this);
+        list = historyDAO.getAll();
+        for (History a : list) {
+            Log.i("HTC", a.getId() + " " + a.getHinh() + a.getKetqua() + a.getTime() + a.getTendoan());
+        }
 
 
-        if (historyArrayList == null) {
+//        if (historyArrayList == null) {
+//            return;
+//        } else {
+//            historyAdapter = new HistoryAdapter(ImgViewTestNguoiYeu.this, historyArrayList);
+//            listView1.setAdapter(historyAdapter);
+//            historyAdapter.notifyDataSetChanged();
+//        }
+
+        if (list == null) {
             return;
         } else {
-            historyAdapter = new HistoryAdapter(ImgViewTest.this, historyArrayList);
+            historyAdapter = new HistoryAdapter(this, list);
             listView1.setAdapter(historyAdapter);
             historyAdapter.notifyDataSetChanged();
+
         }
 
     }
 
+    public void DeleteList(String i) {
+        historyDAO = new HistoryDAO(this);
+
+        list = historyDAO.getAll();
+
+        int id = list.get(Integer.parseInt(i)).getId();
+
+        Log.i("HTC", "id = " + id);
+        historyDAO.delete(String.valueOf(id));
+//set lại dữ liệu từ database lên listview
+        setChanged();
+    }
+
+    public void setChanged() {
+        List<History> updateList = historyDAO.getAll();
+        list.clear();
+        for (History item : updateList) {
+            list.add(item);
+        }
+
+        historyAdapter = new HistoryAdapter(this, list);
+        listView1.setAdapter(historyAdapter);
+        historyAdapter.notifyDataSetChanged();
+    }
 }
